@@ -77,8 +77,12 @@ varargout{1} = handles.output;
 function pushbutton_upload_Callback(hObject, eventdata, handles)
 [filename pathname] = uigetfile('*.jpg;*.bmp','Select bmp file');
 ab = strcat(pathname,filename)
-imshow(ab)
-a = imread(filename)
+axes(handles.axes2);
+imshow(ab);
+x = imread(ab);
+F = fft2(x);
+axes(handles.axes3);
+imshow(F)
 % hObject    handle to pushbutton_upload (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
