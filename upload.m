@@ -101,7 +101,12 @@ imshow(fftA, []); % Display the result
 handles.pushbutton_upload = fftA;
 guidata(hObject,handles) 
 
-
+%plot+scrollowanie+poziom+pion+mniejsza rozdzielczosc(4lub8 razy128/256)
+%badania + wnioski = raport
+%zamiast stem mamy uzyc plota, trzeba dodaæ inne okno do kolumn
+%transformaty, wybieranie wiersza/kolumny - trzeba rozkminiæ jakieœ
+%scrollowanie zamiast wybierania w edit text, zmniejszyc
+%rozdzielczosc(wyswietlac co któras próbke)
 
 % hObject    handle to pushbutton_upload (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -145,7 +150,13 @@ function edit2_Callback(hObject, eventdata, handles)
 
 x = str2double(get(hObject, 'String'));
 axes(handles.axes4);
-stem(handles.pushbutton_upload(x,:)) 
+[m,n] = size(handles.pushbutton_upload);
+if m >= x
+    stem(handles.pushbutton_upload(x,:));
+else
+    error('wiersz poza zakresem');
+end
+    
 
 % --- Executes during object creation, after setting all properties.
 function edit2_CreateFcn(hObject, eventdata, handles)
