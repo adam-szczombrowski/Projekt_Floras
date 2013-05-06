@@ -95,7 +95,7 @@ function pushbutton_upload_Callback(hObject, eventdata, handles)
         fftA = fftA(1:m/2,n/2:n); 
         axes(handles.axes3);
         imshow(fftA, []);
-        handles.pushbutton_upload = fftA;
+        handles.pushbutton_upload = fftA(1:4:end,1:4:end);
         [m,n] = size(fftA);
         pos = get(handles.axes3, 'position');
         width = pos(4) / m * n;
@@ -204,7 +204,7 @@ function slider2_Callback(hObject, eventdata, handles)
         newString = ['Column: ' currentCoumnString];
         set(handles.text3, 'String', newString);
         set(handles.text3, 'visible', 'on');
-        stem(handles.pushbutton_upload(currentColumn,:));
+        plot(handles.pushbutton_upload(currentColumn,:));
     else
         set(handles.text3, 'String', 'Column: 1');
         set(handles.text3, 'visible', 'on');
@@ -243,7 +243,7 @@ function slider3_Callback(hObject, eventdata, handles)
         newString = ['Row: ' currentRowString];
         set(handles.text2, 'String', newString);
         set(handles.text2, 'visible', 'on');
-        stem(handles.pushbutton_upload(:,currentRow));
+        plot(handles.pushbutton_upload(:,currentRow));
     else
         newString = ['Row: ' int2str(n)];
         set(handles.text2, 'String', newString);
